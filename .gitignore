@@ -1,0 +1,13 @@
+# model weights (hashes only, never the files)
+*.safetensors
+*.gguf
+*.bin
+*.npz
+
+# screen recordings go in GitHub Releases, not git
+*.mov
+*.mp4
+
+# mock/test bundles are never published
+MOCK_*/
+MOCK_*
