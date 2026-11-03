@@ -1,0 +1,65 @@
+{
+  "captured_by": "bench_mlx.py machine_info()",
+  "captured_at": "2026-11-02T20:51:16-08:00",
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "machine_arch": "arm64",
+  "python": "3.12.16",
+  "python_executable": "~/local-model-lab/.venv/bin/python",
+  "raw": {
+    "chip": {
+      "cmd": "sysctl -n machdep.cpu.brand_string",
+      "stdout": "Apple M4 Pro"
+    },
+    "hw_memsize": {
+      "cmd": "sysctl -n hw.memsize",
+      "stdout": "51539607552"
+    },
+    "perflevels": {
+      "cmd": "sysctl -n hw.perflevel0.physicalcpu hw.perflevel1.physicalcpu",
+      "stdout": "10\n4"
+    },
+    "iogpu_wired_limit_mb": {
+      "cmd": "sysctl -n iogpu.wired_limit_mb",
+      "stdout": "0"
+    },
+    "sw_vers": {
+      "cmd": "sw_vers",
+      "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123"
+    },
+    "pmset_batt": {
+      "cmd": "pmset -g batt",
+      "stdout": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=35258467)\t99%; discharging; 8:34 remaining present: true"
+    },
+    "pmset_lowpower": {
+      "cmd": "pmset -g",
+      "stdout": null
+    }
+  },
+  "chip": "Apple M4 Pro",
+  "ram_bytes": 51539607552,
+  "ram_gb": 48.0,
+  "macos": {
+    "ProductName": "macOS",
+    "ProductVersion": "27.2",
+    "BuildVersion": "26B123"
+  },
+  "power_source": "Battery Power",
+  "low_power_mode": null,
+  "gpu_cores": 20,
+  "gpu": [
+    {
+      "model": "Apple M4 Pro",
+      "cores": "20"
+    }
+  ],
+  "packages": {
+    "mlx": "0.32.4",
+    "mlx-metal": "0.32.4",
+    "mlx-lm": "0.32.2",
+    "transformers": "5.22.1",
+    "huggingface_hub": "2.4.0",
+    "tokenizers": "0.23.3",
+    "numpy": "2.5.4",
+    "safetensors": "0.8.0"
+  }
+}
