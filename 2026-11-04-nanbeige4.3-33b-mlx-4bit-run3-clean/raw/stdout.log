@@ -1,0 +1,16 @@
+bundle: results/2026-11-04_nanbeige4.3-33b-mlx-4bit_4bit-g64
+model: pratikgx/Nanbeige4.3-33B-MLX-4bit @ 237535050827b0e7b6d0af9a199ad686dbc9f111 (4bit-g64); OK: every local file matches the Hub's sha256 (LFS) or git blob id
+loaded in 1.0s
+ctx    512 | prompt    512 tok | prefill     60.8 tok/s | decode    7.8 tok/s | TTFT   8.42 s | peak  19.3 GB
+ctx   4096 | prompt   4096 tok | prefill     38.2 tok/s | decode    6.0 tok/s | TTFT 107.34 s | peak  20.2 GB
+ctx  32768 | prompt  32768 tok | prefill     28.6 tok/s | decode    2.1 tok/s | TTFT 1145.50 s | peak  26.4 GB
+[quality] arith-pens run 0: PASS (last line '$39' matches '^\\**\\$?\\s*39(\\.00)?\\**$'; 327 tok, 3.3 tok/s)
+[quality] arith-weekday run 0: PASS (last line 'Wednesday' matches '^\\**wednesday\\.?\\**$'; 118 tok, 3.4 tok/s)
+[quality] arith-recipe run 0: PASS (last line '3' matches '^\\**3(\\.0+)?( cups?)?\\.?\\**$'; 92 tok, 3.4 tok/s)
+[quality] extract-order run 0: PASS (regex '^\\**boise\\.?\\**$' found in final answer; 89 tok, 3.5 tok/s)
+[quality] instr-three-chips run 0: PASS (3 lines, all valid; 125 tok, 3.5 tok/s)
+[quality] instr-json run 0: PASS (JSON fields match; 106 tok, 3.5 tok/s)
+[quality] code-palindrome run 0: review manually (run it on 'A man, a plan, a canal: Panama' (True) and 'race a car' (False); model code is never executed by the bench; 405 tok, 3.5 tok/s)
+wrote results.md and results.json from raw/
+wrote results/pratikgx__Nanbeige4.3-33B-MLX-4bit-20261104-121340.json
+wrote bundle results/2026-11-04_nanbeige4.3-33b-mlx-4bit_4bit-g64; sealing SHA256SUMS (this is the last line of stdout.log)

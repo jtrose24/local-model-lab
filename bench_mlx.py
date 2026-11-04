@@ -104,7 +104,7 @@ def machine_info():
     m["macos"] = dict(re.findall(r"^(\w+):\s*(.+)$", sv, re.M)) or None
     batt = m["raw"]["pmset_batt"]["stdout"] or ""
     m["power_source"] = (re.search(r"Now drawing from '([^']+)'", batt) or [None, None])[1]
-    lp = re.search(r"lowpowermode\s+(\d)", m["raw"]["pmset_lowpower"]["stdout"] or "")
+    lp = re.search(r"^\s*(?:lowpowermode|powermode)\s+(\d)", m["raw"]["pmset_lowpower"]["stdout"] or "", re.M)  # macOS 27 prints "powermode"
     m["low_power_mode"] = (lp.group(1) == "1") if lp else None
     m["raw"]["pmset_lowpower"]["stdout"] = lp.group(0) if lp else None  # keep only the relevant line
     disp = sh(["system_profiler", "SPDisplaysDataType", "-json"], timeout=60)
@@ -252,19 +252,29 @@ class MLXBackend:
 
     def bench_prompt(self, n_tokens):
         """Chat-templated prompt whose total length is ~n_tokens (same construction as the original script)."""
-        unit = len(self.tok.encode(FILLER))
-        text = self.render(FILLER * max(1, n_tokens // max(unit, 1)) + BENCH_INSTRUCTION, thinking=False)
-        ids = self.tok.encode(text)
+        unit = max(len(self.tok.encode(FILLER)), 1)
+        reps = max(1, n_tokens // unit)
+        for _ in range(10):  # fix 2026-11-02: repeated filler tokenizes shorter than unit*reps (run 1 got 3,857/30,625)
+            text = self.render(FILLER * reps + BENCH_INSTRUCTION, thinking=False)
+            ids = self.tok.encode(text)
+            if len(ids) >= n_tokens: break
+            reps += (n_tokens - len(ids)) // unit + 1
         if len(ids) > n_tokens:  # trim filler from the front, keep the template tail
             ids = ids[:8] + ids[len(ids) - n_tokens + 8:]
         return ids, self.tok.decode(ids)
 
-    def generate(self, ids, max_tokens, temp, top_p, seed):
+    def generate(self, ids, max_tokens, temp, top_p, seed, ignore_eos=False):
         self._reset()
         if seed is not None: self.mx.random.seed(seed)
         sampler = self.make_sampler(temp=temp, top_p=top_p) if temp > 0 else self.make_sampler(temp=0.0)
+        kw = {}
+        if ignore_eos:  # speed runs: mask EOS so every run decodes exactly max_tokens (fix: real runs stopped at 34-52 tok)
+            eos = sorted(getattr(self.tok, "eos_token_ids", None) or [self.tok.eos_token_id])
+            def _no_eos(tokens, logits, _eos=eos):
+                logits[..., _eos] = -float("inf"); return logits
+            kw["logits_processors"] = [_no_eos]
         t0 = time.perf_counter(); ttft = None; last = None; text = []
-        for r in self.stream_generate(self.model, self.tok, ids, max_tokens=max_tokens, sampler=sampler):
+        for r in self.stream_generate(self.model, self.tok, ids, max_tokens=max_tokens, sampler=sampler, **kw):
             if ttft is None: ttft = time.perf_counter() - t0
             text.append(r.text); last = r
         wall = time.perf_counter() - t0
@@ -320,7 +330,8 @@ def redaction_rules():
     users = {os.path.basename(h) for h in homes}
     try: users.add(getpass.getuser())
     except Exception: pass
-    users = {u for u in users if u and u not in ("root", "/", ".")}
+    # bare-username rules only for names of 3+ chars: a 1-letter user like "a" turned "n/a" into "n/<user>" (2026-11-02)
+    users = {u for u in users if u and len(u) >= 3 and u not in ("root", "/", ".")}
     rules = [(re.compile(re.escape(h) + r"(?=[/\\\"'\s,]|$)"), "~") for h in sorted(homes, key=len, reverse=True) if len(h) > 1]
     for u in users:  # bare username, only where it sits inside a path (next to / or \\)
         rules.append((re.compile(r"(?<=[/\\])" + re.escape(u) + r"(?=[/\\\"'\s]|$)"), "<user>"))
@@ -339,7 +350,7 @@ def redact_bundle(bundle, rules):
     for root, _, files in os.walk(bundle):
         for fn in files:
             fp = os.path.join(root, fn)
-            if fn.endswith((".mov", ".mp4")): continue
+            if fn.endswith((".mov", ".mp4")) or fn == "recompute.py": continue  # copied source, never has user paths
             try: s = open(fp, encoding="utf-8").read()
             except (UnicodeDecodeError, OSError): continue
             t = redact_text(s, rules)
@@ -501,7 +512,7 @@ def main():
 
     def gen(ids, max_tokens, temp, top_p, seed, pid=None):
         if a.mock: return backend.generate(ids, max_tokens, temp, top_p, seed, prompt_id=pid)
-        return backend.generate(ids, max_tokens, temp, top_p, seed)
+        return backend.generate(ids, max_tokens, temp, top_p, seed, ignore_eos=pid is None)
 
     for ctx in a.contexts:
         bid = f"ctx{ctx}"

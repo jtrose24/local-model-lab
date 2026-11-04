@@ -1,0 +1,172 @@
+{
+  "mock": false,
+  "schema": "local-model-lab-receipt/1",
+  "tool": "bench_mlx.py",
+  "tool_sha256": "e20585d554e6a68cf4842830ceb8778e30a9215a8990fe699aa81263682745f0",
+  "command": "~/local-model-lab/.venv/bin/python bench_mlx.py --model pratikgx/Nanbeige4.3-33B-MLX-4bit --revision 237535050827b0e7b6d0af9a199ad686dbc9f111 --contexts 512 4096 32768 --gen 256 --runs 3 --quality",
+  "cwd": "~/local-model-lab",
+  "started_at": "2026-11-04T10:30:11-08:00",
+  "ended_at": "2026-11-04T12:13:40-08:00",
+  "started_at_utc": "2026-11-04T18:30:11+00:00",
+  "elapsed_s": 6208.452851915994,
+  "load_s": 1.03910566601553,
+  "model": {
+    "repo_id": "pratikgx/Nanbeige4.3-33B-MLX-4bit",
+    "requested_revision": "237535050827b0e7b6d0af9a199ad686dbc9f111",
+    "revision": "237535050827b0e7b6d0af9a199ad686dbc9f111",
+    "hub_check": "OK: every local file matches the Hub's sha256 (LFS) or git blob id",
+    "files": [
+      {
+        "path": ".gitattributes",
+        "kind": "other",
+        "bytes": 1570,
+        "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+        "git_blob_sha1": "52373fe24473b1aa44333d318f578ae6bf04b49b",
+        "hub_blob_id": "52373fe24473b1aa44333d318f578ae6bf04b49b",
+        "hub_match": true
+      },
+      {
+        "path": "README.md",
+        "kind": "other",
+        "bytes": 4298,
+        "sha256": "508a7e529f7f2dbfd8ed6e8801e09e6ad0a90a298ff1bf35c0a442a13cdb88c3",
+        "git_blob_sha1": "e6952db5211729e2d49eecd09ddc148d8bf36be3",
+        "hub_blob_id": "e6952db5211729e2d49eecd09ddc148d8bf36be3",
+        "hub_match": true
+      },
+      {
+        "path": "chat_template.jinja",
+        "kind": "config",
+        "bytes": 8417,
+        "sha256": "f2b1e2a1be25d277e8c903a2aa4d69ca5fd8a0fcb37d4792088e72426df5b91c",
+        "git_blob_sha1": "efddd0636eb9b9376011a9e5f3303f6f94d4c0c0",
+        "hub_blob_id": "efddd0636eb9b9376011a9e5f3303f6f94d4c0c0",
+        "hub_match": true
+      },
+      {
+        "path": "config.json",
+        "kind": "config",
+        "bytes": 1160,
+        "sha256": "e7d02afe1d924f5c6b955734b11a0b5e6225f12e56e243c6eea5746b7aae9eb5",
+        "git_blob_sha1": "a0af2b6e338bda43d27e5ec76eba336e913d8ec0",
+        "hub_blob_id": "a0af2b6e338bda43d27e5ec76eba336e913d8ec0",
+        "hub_match": true
+      },
+      {
+        "path": "generation_config.json",
+        "kind": "config",
+        "bytes": 164,
+        "sha256": "fa8b09c0d2ab1db7a2736a780586df21b1602f8e02e29fa9feee325bb57d18ee",
+        "git_blob_sha1": "a46c6565c7ccaca981a8d5f069da850827d6962b",
+        "hub_blob_id": "a46c6565c7ccaca981a8d5f069da850827d6962b",
+        "hub_match": true
+      },
+      {
+        "path": "model-00001-of-00004.safetensors",
+        "kind": "weights",
+        "bytes": 5363709360,
+        "sha256": "892f2618a7abe812970e7e1983132fec75ed149945501d023caa5ced5484426f",
+        "hub_sha256": "892f2618a7abe812970e7e1983132fec75ed149945501d023caa5ced5484426f",
+        "hub_match": true
+      },
+      {
+        "path": "model-00002-of-00004.safetensors",
+        "kind": "weights",
+        "bytes": 5347256064,
+        "sha256": "82387242885407f786e5005f6c475971d55f9be293445ebc6f9f29d824a4db96",
+        "hub_sha256": "82387242885407f786e5005f6c475971d55f9be293445ebc6f9f29d824a4db96",
+        "hub_match": true
+      },
+      {
+        "path": "model-00003-of-00004.safetensors",
+        "kind": "weights",
+        "bytes": 5318354336,
+        "sha256": "ba6e67738454b1b5ddcb69fdfddb33d5595f105d90d925fddc39d1257bb3ab2a",
+        "hub_sha256": "ba6e67738454b1b5ddcb69fdfddb33d5595f105d90d925fddc39d1257bb3ab2a",
+        "hub_match": true
+      },
+      {
+        "path": "model-00004-of-00004.safetensors",
+        "kind": "weights",
+        "bytes": 2601325016,
+        "sha256": "9ba7a970071c0406b7e60d34462a9455a5f26dd5dfcbc7c05b103e32ce0c5d1e",
+        "hub_sha256": "9ba7a970071c0406b7e60d34462a9455a5f26dd5dfcbc7c05b103e32ce0c5d1e",
+        "hub_match": true
+      },
+      {
+        "path": "model.safetensors.index.json",
+        "kind": "config",
+        "bytes": 103068,
+        "sha256": "b911a17418d8964be091e652dabbe42c645af811912998e396ac1423a8fd0bd7",
+        "git_blob_sha1": "421951734ba13be3273f081bda799bf510af9eea",
+        "hub_blob_id": "421951734ba13be3273f081bda799bf510af9eea",
+        "hub_match": true
+      },
+      {
+        "path": "tokenizer.json",
+        "kind": "tokenizer",
+        "bytes": 18450976,
+        "sha256": "a002676e923776f5a59d21320d667920e732000f7762fb72e6be6e911790e060",
+        "hub_sha256": "a002676e923776f5a59d21320d667920e732000f7762fb72e6be6e911790e060",
+        "hub_match": true
+      },
+      {
+        "path": "tokenizer_config.json",
+        "kind": "tokenizer",
+        "bytes": 545,
+        "sha256": "78858d040fb2ff5cc7d07eb74e26343f2d78e25efea646fd2c75d5a2b035baea",
+        "git_blob_sha1": "dff6ecc3358cdd8a2c049031b0f06e3df70edf21",
+        "hub_blob_id": "dff6ecc3358cdd8a2c049031b0f06e3df70edf21",
+        "hub_match": true
+      }
+    ],
+    "hub_last_modified": "2026-11-01T01:33:30+00:00",
+    "hub_total_bytes": 18649214974,
+    "source": "huggingface hub cache",
+    "local_snapshot_commit": "237535050827b0e7b6d0af9a199ad686dbc9f111",
+    "hub_files_not_local": []
+  },
+  "model_local_path": "~/.cache/huggingface/hub/models--pratikgx--Nanbeige4.3-33B-MLX-4bit/snapshots/237535050827b0e7b6d0af9a199ad686dbc9f111",
+  "quant": "4bit-g64",
+  "contexts": [
+    512,
+    4096,
+    32768
+  ],
+  "runs": 3,
+  "quality_runs": 1,
+  "runtime": {
+    "backend": "mlx",
+    "mlx": "0.32.4",
+    "mlx_lm": "0.32.2"
+  },
+  "sampling": {
+    "bench": {
+      "temp": 0.0,
+      "top_p": null,
+      "seed": null,
+      "max_tokens": 256,
+      "warmup_max_tokens": 16
+    },
+    "quality": {
+      "temp": 0.6,
+      "top_p": 0.95,
+      "seed": 0,
+      "seed_per_run": "seed + run",
+      "max_tokens": 4096
+    }
+  },
+  "prompts": {
+    "source_path": "~/local-model-lab/prompts/default.jsonl",
+    "count": 7,
+    "sha256": "e9814eee0daae15cb9fbbaf2e5cb04700824553ad8a8eef036813d97e67b0f20"
+  },
+  "bench_prompt": {
+    "filler": "The history of the printing press is a story of incremental engineering, local craft knowledge, and the slow spread of standardized type across European cities. ",
+    "instruction": "\n\nSummarize the passage above in one sentence.",
+    "construction": "filler repeated to ~N tokens, chat template with thinking off, trimmed from the front"
+  },
+  "recording": null,
+  "machine_summary": "Apple M4 Pro, 48 GB, macOS 27.2",
+  "redacted_username": true
+}

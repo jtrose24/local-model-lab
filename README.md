@@ -17,8 +17,9 @@ each test gets its own folder named by date and model, like `2026-11-02-<model-s
 
 ## tests
 
-- [`2026-11-02-nanbeige4.3-33b-mlx-4bit/`](2026-11-02-nanbeige4.3-33b-mlx-4bit/): Nanbeige4.3-33B, MLX 4-bit (pratikgx/Nanbeige4.3-33B-MLX-4bit @ `2375350`), M4 Pro 48GB, on battery. Run with the `bench_mlx.py` in this repo (sha256 `eaeecd92…`, matches `tool_sha256` in the manifest). Known issues with this run, left as-is so the sealed receipts stay untouched:
-  - the speed runs stopped at the model's end-of-text token after 34–52 tokens, not the 256 that `results.md` says, so decode tok/s comes from short generations
+- [`2026-11-04-nanbeige4.3-33b-mlx-4bit-run3-clean/`](2026-11-04-nanbeige4.3-33b-mlx-4bit-run3-clean/): **current result.** Nanbeige4.3-33B, MLX 4-bit (pratikgx/Nanbeige4.3-33B-MLX-4bit @ `2375350`), M4 Pro 48GB, on AC power, with Darkbloom stopped for the whole run (checked once a minute). Run with the fixed `bench_mlx.py` now in this repo (sha256 `e20585d5…`, matches `tool_sha256` in the manifest). Every speed run decodes exactly 256 tokens, and the prompts are exactly 512 / 4,096 / 32,768 tokens.
+- [`2026-11-02-nanbeige4.3-33b-mlx-4bit/`](2026-11-02-nanbeige4.3-33b-mlx-4bit/): run 1, **superseded**. The Mac was on battery, and a Darkbloom provider was running in the background and loading models. It was run with the older script (sha256 `eaeecd92…`, no longer in the repo; that script's issues are fixed in the current one). Known issues, left as-is so the sealed receipts stay untouched:
+  - the speed runs stopped at the end-of-text token after 34–52 tokens, not 256
   - the "4096" and "32768" prompts were really 3,857 and 30,625 tokens
-  - the default username redaction changed the text `n/a` to `n/<user>` inside the bundle's `recompute.py`. This only affects display text and no numbers
-  - no screen recording for this run
+  - redaction changed the text `n/a` to `n/<user>` inside that bundle's `recompute.py` (display text only, no numbers)
+  - no screen recording

@@ -1,0 +1,136 @@
+{
+  "bench": {
+    "ctx32768": {
+      "context_target": 32768,
+      "decode_tps_median": 2.1007548418288144,
+      "peak_mem_gb_max": 26.373191708,
+      "prefill_tps_median": 28.60592535661283,
+      "prompt_tokens": 32768,
+      "runs": 3,
+      "ttft_s_median": 1145.4993389160081,
+      "wall_s_median": 1267.4000158330018
+    },
+    "ctx4096": {
+      "context_target": 4096,
+      "decode_tps_median": 6.039744746648283,
+      "peak_mem_gb_max": 20.20745014,
+      "prefill_tps_median": 38.15857415941408,
+      "prompt_tokens": 4096,
+      "runs": 3,
+      "ttft_s_median": 107.34389516699594,
+      "wall_s_median": 150.681551125017
+    },
+    "ctx512": {
+      "context_target": 512,
+      "decode_tps_median": 7.771322756541231,
+      "peak_mem_gb_max": 19.319586904,
+      "prefill_tps_median": 60.838260326324416,
+      "prompt_tokens": 512,
+      "runs": 3,
+      "ttft_s_median": 8.416403667011764,
+      "wall_s_median": 41.379075333010405
+    }
+  },
+  "mock": false,
+  "per_prompt": [
+    {
+      "decode_tps": 3.3023965417444994,
+      "gen_tokens": 327,
+      "hit_token_cap": false,
+      "id": "arith-pens",
+      "peak_mem_gb": 18.826049984,
+      "prompt_tokens": 81,
+      "reason": "last line '$39' matches '^\\\\**\\\\$?\\\\s*39(\\\\.00)?\\\\**$'",
+      "run": 0,
+      "status": "pass",
+      "wall_s": 102.36324562501977
+    },
+    {
+      "decode_tps": 3.4020668933065212,
+      "gen_tokens": 118,
+      "hit_token_cap": false,
+      "id": "arith-weekday",
+      "peak_mem_gb": 18.807912856,
+      "prompt_tokens": 62,
+      "reason": "last line 'Wednesday' matches '^\\\\**wednesday\\\\.?\\\\**$'",
+      "run": 0,
+      "status": "pass",
+      "wall_s": 37.31445866602007
+    },
+    {
+      "decode_tps": 3.4470351942568827,
+      "gen_tokens": 92,
+      "hit_token_cap": false,
+      "id": "arith-recipe",
+      "peak_mem_gb": 18.800736684,
+      "prompt_tokens": 67,
+      "reason": "last line '3' matches '^\\\\**3(\\\\.0+)?( cups?)?\\\\.?\\\\**$'",
+      "run": 0,
+      "status": "pass",
+      "wall_s": 30.057184292003512
+    },
+    {
+      "decode_tps": 3.4532891409314965,
+      "gen_tokens": 89,
+      "hit_token_cap": false,
+      "id": "extract-order",
+      "peak_mem_gb": 18.814220792,
+      "prompt_tokens": 95,
+      "reason": "regex '^\\\\**boise\\\\.?\\\\**$' found in final answer",
+      "run": 0,
+      "status": "pass",
+      "wall_s": 29.17323824999039
+    },
+    {
+      "decode_tps": 3.519298542766765,
+      "gen_tokens": 125,
+      "hit_token_cap": false,
+      "id": "instr-three-chips",
+      "peak_mem_gb": 18.778143072,
+      "prompt_tokens": 48,
+      "reason": "3 lines, all valid",
+      "run": 0,
+      "status": "pass",
+      "wall_s": 38.12164516700432
+    },
+    {
+      "decode_tps": 3.4907751026620955,
+      "gen_tokens": 106,
+      "hit_token_cap": false,
+      "id": "instr-json",
+      "peak_mem_gb": 18.809829824,
+      "prompt_tokens": 72,
+      "reason": "JSON fields match",
+      "run": 0,
+      "status": "pass",
+      "wall_s": 33.612838375003776
+    },
+    {
+      "decode_tps": 3.4575430919442987,
+      "gen_tokens": 405,
+      "hit_token_cap": false,
+      "id": "code-palindrome",
+      "peak_mem_gb": 18.797820296,
+      "prompt_tokens": 58,
+      "reason": "run it on 'A man, a plan, a canal: Panama' (True) and 'race a car' (False); model code is never executed by the bench",
+      "run": 0,
+      "status": "manual",
+      "wall_s": 119.69585679200827
+    }
+  ],
+  "quality": {
+    "auto_graded": 6,
+    "decode_tps_median": 3.4532891409314965,
+    "gen_tokens_total": 1262,
+    "hit_token_cap": 0,
+    "manual": 1,
+    "outputs": 7,
+    "peak_mem_gb_max": 18.826049984,
+    "prompt_tokens_total": 483,
+    "right": 6,
+    "right_pct": 100.0,
+    "wall_s_per_right": 65.05641119450836,
+    "wall_s_total": 390.3384671670501,
+    "wrong": 0
+  }
+}
